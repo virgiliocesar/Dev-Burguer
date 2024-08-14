@@ -8,8 +8,11 @@ const Header = () => {
           src={Logo}
           alt="logo"
         />
-              <h1 className="text-4xl mt-4 mb-2 font-bold text-white">Dev Burguer</h1>
-              <span className="text-white">Rua dev 372, SBC - SP</span>
+        <h1 className="text-4xl mt-4 mb-2 font-bold text-white">Dev Burguer</h1>
+        <span className="text-white">Rua dev 372, SBC - SP</span>
+        <div className="bg-green-600 px-4 py-1 rounded-lg mt-5" id="date-span">
+          <span className="text-white font-medium"> Seg á Dom - 18:00 as 23:00</span>
+        </div>
       </div>
     </header>
   );
