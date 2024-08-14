@@ -1,6 +1,6 @@
 const Modal = () => {
   return (
-    <div className="bg-black/50 w-full h-full fixed top-0 left-0 z-[99] items-center justify-center flex hidden">
+    <div className="bg-black/50 w-full h-full fixed top-0 left-0 z-[99] items-center justify-center hidden">
       <div className="bg-white p-5 rounded-md min-w-[90%] md:min-w-[600px]">
               <h2 className="text-center font-bold text-2xl mb-2">Meu carrinho</h2>
               <div id="cart-items" className="flex justify-between mb-2 flex-col"></div>
