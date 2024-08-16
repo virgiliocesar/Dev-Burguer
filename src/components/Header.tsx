@@ -1,7 +1,7 @@
-import Logo from "../assets/img/hamb-1.png";
+import Logo from "../assets/img/logo.png";
 const Header = () => {
   return (
-    <header className="w-full h-[420px] bg-zinc-900 bg-home bg cover bg-center ">
+    <header className="w-full h-[420px] bg-zinc-900 bg-home bg-cover bg-center ">
       <div className="w-full h-flex flex flex-col justify-center items-center">
         <img
           className="mt-16 w-32 h-32 rounded-full shadow-lg hover:scale-110 duration-200"
