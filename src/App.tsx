@@ -5,13 +5,23 @@ import Footer from "./components/Footer";
 import Modal from "./components/Modal";
 
 export default function App() {
-  const[modal, setModal] = useState("hidden");
+  const [modal, setModal] = useState("hidden");
+  const [cart, setCart] = useState(0);
+  const [count, setCount] = useState(1);
+
   return (
     <div className="text-3 font-bold underline">
       <Header />
-      <Menu />
-      <Modal modal ={modal} setModal={setModal}/>
-      <Footer setModal={setModal} />
+      <Menu cart={cart}
+        setCart={setCart}
+        count={count}
+        setCount={setCount} />
+      <Modal modal={modal}
+        setModal={setModal}
+        cart={cart} />
+      <Footer setModal={setModal}
+        cart={cart}
+        count={count} />
     </div>
   );
 }

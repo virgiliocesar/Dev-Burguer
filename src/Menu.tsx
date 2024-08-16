@@ -11,7 +11,7 @@ import hambEith from "./assets/img/hamb-8.png";
 import refriOne from "./assets/img/refri-1.png";
 import refriTwo from "./assets/img/refri-2.png";
 
-const Menu = () => {
+const Menu = ({ cart, setCart, count, setCount}: { cart: number; setCart: (value: number) => void, count: number, setCount: (value: number) => void}) => {
   return (
     <div>
       <h2 className="text-2xl md:text-3xl font-bold text-center mt-9 mb-6">
@@ -20,6 +20,10 @@ const Menu = () => {
       <div id="menu">
         <main className="grid grid-cols-1 md:grid-cols-2 gap-7 md:gap-10 mx-auto max-w-7xl px2 mb-16">
           <Product
+            count={count}
+            setCount={setCount}
+            cart={cart}
+            setCart={setCart}
             src={hambOne}
             alt={"Hamburguer Smash"}
             title={"Hamburguer Smash"}
@@ -31,6 +35,10 @@ const Menu = () => {
             dataPrice={"18.90"}
           />
           <Product
+            count={count}
+            setCount={setCount}
+            cart={cart}
+            setCart={setCart}
             src={hambTwo}
             alt={"Hamburguer Duplo"}
             title={"Hamburguer Duplo"}
@@ -42,6 +50,10 @@ const Menu = () => {
             dataPrice={"29.90"}
           />
           <Product
+            count={count}
+            setCount={setCount}
+            cart={cart}
+            setCart={setCart}
             src={hambThree}
             alt={"Hamburguer Duplo Queijo"}
             title={"Hamburguer Duplo Queijo"}
@@ -53,6 +65,10 @@ const Menu = () => {
             dataPrice={"35.90"}
           />
           <Product
+            count={count}
+            setCount={setCount}
+            cart={cart}
+            setCart={setCart}
             src={hambFor}
             alt={"Hamburguer One chicken"}
             title={"Hamburguer One chicken"}
@@ -64,6 +80,10 @@ const Menu = () => {
             dataPrice={"32.90"}
           />
           <Product
+            count={count}
+            setCount={setCount}
+            cart={cart}
+            setCart={setCart}
             src={hambFive}
             alt={"Hamburguer all two "}
             title={"Hamburguer all two"}
@@ -75,6 +95,10 @@ const Menu = () => {
             dataPrice={"30.00"}
           />
           <Product
+            count={count}
+            setCount={setCount}
+            cart={cart}
+            setCart={setCart}
             src={hambSix}
             alt={"Hamburguer Tradicional Onion"}
             title={"Hamburguer Tradicional Onion"}
@@ -86,6 +110,10 @@ const Menu = () => {
             dataPrice={"25.90"}
           />
           <Product
+            count={count}
+            setCount={setCount}
+            cart={cart}
+            setCart={setCart}
             src={hambSeven}
             alt={"Hamburguer X-egg"}
             title={"Hamburguer X-egg"}
@@ -97,6 +125,10 @@ const Menu = () => {
             dataPrice={"16.90"}
           />
           <Product
+            count={count}
+            setCount={setCount}
+            cart={cart}
+            setCart={setCart}
             src={hambEith}
             alt={"Hamburguer"}
             title={"Hamburguer vegan"}
@@ -118,6 +150,10 @@ const Menu = () => {
           id="menu"
         >
           <Product
+            count={count}
+            setCount={setCount}
+            cart={cart}
+            setCart={setCart}
             src={refriOne}
             alt={"Refrigerante Coca Cola"}
             title={"Coca Cola"}
@@ -127,6 +163,10 @@ const Menu = () => {
             dataPrice={"12.90"}
           />
           <Product
+            count={count}
+            setCount={setCount}
+            cart={cart}
+            setCart={setCart}
             src={refriTwo}
             alt={"Refrigerante Guaraná"}
             title={"Guaraná"}

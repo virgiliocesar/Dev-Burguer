@@ -1,10 +1,21 @@
 const Modal = ({
   modal,
   setModal,
+  cart,
 }: {
+  cart: number;
   modal: string;
   setModal: (value: string) => void;
-}) => {
+    }) => {
+    // function addToCart() {
+    //   setCart(cart + 1);
+    // }
+    // function removeFromCart() {
+    //   setCart(cart - 1);
+    // }
+    // function resetCart() {
+    //   setCart(0);
+    // }
   return (
     <div
       id="cart-modal"
@@ -16,18 +27,17 @@ const Modal = ({
         onClick={(e) => e.stopPropagation()}
       >
         <h2 className="text-center font-bold text-2xl mb-2">Meu carrinho</h2>
-        <div
-          id="cart-items"
-          className="flex justify-between mb-2 flex-col"
-        ></div>
+        <div id="cart-items" className="flex justify-between mb-2 flex-col">
+          {/* Aqui os itens do carrinho devem ser renderizados */}
+        </div>
         <p className="font-bold">
-          Total: <span id="cart-total">0.00</span>
+          Total: <span id="cart-total">R${cart.toFixed(2)}</span>
         </p>
         <p className="font-bold mt-4">Endereço de entrega:</p>
         <input
           type="text"
           placeholder="Digite seu endereço completo..."
-          id="adrress"
+          id="address"
           className="w-full border-2 p-1 rounded my-1"
         />
         <p className="text-red-500 hidden" id="address-warn">
@@ -39,7 +49,7 @@ const Modal = ({
           </button>
           <button
             id="checkout-btn"
-            className="bg-green-500 text-white px-4 py1 rounded"
+            className="bg-green-500 text-white px-4 py-1 rounded"
           >
             Finalizar pedido
           </button>
