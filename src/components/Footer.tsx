@@ -12,7 +12,6 @@ const Footer = ({ setModal }: { setModal: (value : string) => void }) => {
           <i className="fa fa-cart-plus text-lg text-white"></i>
         </button>
       </footer>
-      {/*---------------MODAL----------------- */}
     </>
   );
 };

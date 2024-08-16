@@ -1,3 +1,4 @@
+import { useState } from "react";
 const Product = ({
   src,
   alt,
@@ -14,7 +15,9 @@ const Product = ({
   price: string;
   dataName: string;
   dataPrice: string;
-}) => {
+  }) => {
+  const[product, setProduct] = useState(false);
+  
   return (
     <div className="flex gap-2 w-full">
       <img

@@ -1,11 +1,20 @@
-
-const Modal = ({ modal , setModal}: { modal: string, setModal: (value : string) => void }) => {
+const Modal = ({
+  modal,
+  setModal,
+}: {
+  modal: string;
+  setModal: (value: string) => void;
+}) => {
   return (
     <div
       id="cart-modal"
-      className={`bg-black/50 w-full h-full fixed top-0 left-0 z-[99] items-center justify-center ${modal}`}
+      className={`bg-black/50 w-full h-full fixed top-0 left-0 z-[99] items-center justify-center ${modal} cursor-pointer`}
+      onClick={() => setModal("hidden")}
     >
-      <div className="bg-white p-5 rounded-md min-w-[90%] md:min-w-[600px]">
+      <div
+        className="bg-white p-5 rounded-md min-w-[90%] md:min-w-[600px] cursor-auto"
+        onClick={(e) => e.stopPropagation()}
+      >
         <h2 className="text-center font-bold text-2xl mb-2">Meu carrinho</h2>
         <div
           id="cart-items"
@@ -25,7 +34,9 @@ const Modal = ({ modal , setModal}: { modal: string, setModal: (value : string) 
           Digite seu endereço completo!
         </p>
         <div className="flex items-center justify-between mt-5 w-full">
-          <button id="close-modal-btn" onClick={() => setModal("hidden")}>Fechar</button>
+          <button id="close-modal-btn" onClick={() => setModal("hidden")}>
+            Fechar
+          </button>
           <button
             id="checkout-btn"
             className="bg-green-500 text-white px-4 py1 rounded"
@@ -36,6 +47,6 @@ const Modal = ({ modal , setModal}: { modal: string, setModal: (value : string) 
       </div>
     </div>
   );
-}
+};
 
-export default Modal
+export default Modal;
