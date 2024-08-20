@@ -1,4 +1,24 @@
-const Product = ({
+interface CartItems {
+  nameItems: string;
+  priceItems: number;
+  quantity: number;
+}
+
+interface ProductProps {
+  count: number;
+  setCount: (value: number) => void;
+  cart: CartItems[];
+  setCart: (value: CartItems[]) => void;
+  src: string;
+  alt: string;
+  title: string;
+  description: string;
+  price: string;
+  dataName: string;
+  dataPrice: string;
+}
+
+const Product: React.FC<ProductProps> = ({
   count,
   setCount,
   cart,
@@ -10,23 +30,18 @@ const Product = ({
   price,
   dataName,
   dataPrice,
-}: {
-  count: number;
-  setCount: (value: number) => void;
-  cart: number;
-  setCart: (value: number) => void;
-  src: string;
-  alt: string;
-  title: string;
-  description: string;
-  price: string;
-  dataName: string;
-  dataPrice: string;
 }) => {
-  function valueToCart() {
+  const priceItems = Number(dataPrice);
+  const nameItems = dataName;
+
+  function addToCart(nameItems: string, priceItems: number) {
+    const newCart = [...cart, { nameItems, priceItems, quantity: 1 }];
+    setCart(newCart);
     setCount(count + 1);
-    setCart(cart + Number(dataPrice));
+
+    console.log(cart);
   }
+
   return (
     <div className="flex gap-2 w-full">
       <img
@@ -43,7 +58,7 @@ const Product = ({
             className="bg-gray-900 px-5 rounded add-to-cart-btn"
             data-name={dataName}
             data-price={dataPrice}
-            onClick={() => valueToCart()}
+            onClick={() => addToCart(nameItems, priceItems)}
           >
             <i className="fas fa-cart-plus text-lg text-white"></i>
           </button>

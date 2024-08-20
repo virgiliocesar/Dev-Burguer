@@ -6,16 +6,16 @@ const Modal = ({
   cart: number;
   modal: string;
   setModal: (value: string) => void;
-    }) => {
-    // function addToCart() {
-    //   setCart(cart + 1);
-    // }
-    // function removeFromCart() {
-    //   setCart(cart - 1);
-    // }
-    // function resetCart() {
-    //   setCart(0);
-    // }
+}) => {
+  // function addToCart() {
+  //   setCart(cart + 1);
+  // }
+  // function removeFromCart() {
+  //   setCart(cart - 1);
+  // }
+  // function resetCart() {
+  //   setCart(0);
+  // }
   return (
     <div
       id="cart-modal"
@@ -31,7 +31,7 @@ const Modal = ({
           {/* Aqui os itens do carrinho devem ser renderizados */}
         </div>
         <p className="font-bold">
-          Total: <span id="cart-total">R${cart.toFixed(2)}</span>
+          Total: <span id="cart-total">R${/*Valor do carrinho */}</span>
         </p>
         <p className="font-bold mt-4">Endereço de entrega:</p>
         <input

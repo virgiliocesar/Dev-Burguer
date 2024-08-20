@@ -18,7 +18,7 @@ const Menu = ({ cart, setCart, count, setCount}: { cart: number; setCart: (value
         Conheça nosso menu
       </h2>
       <div id="menu">
-        <main className="grid grid-cols-1 md:grid-cols-2 gap-7 md:gap-10 mx-auto max-w-7xl px2 mb-16">
+        <main className="grid grid-cols-1 md:grid-cols-2 gap-7 md:gap-10 mx-auto max-w-7xl px-2 mb-16">
           <Product
             count={count}
             setCount={setCount}
