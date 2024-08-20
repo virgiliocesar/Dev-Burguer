@@ -6,10 +6,21 @@ interface CartItem {
 }
 interface ModalProps {
   cart: CartItem[];
+  setCart: (value: CartItems[]) => void;
   modal: string;
   setModal: (value: string) => void;
+  dataName: string;
 }
-const Modal: React.FC<ModalProps> = ({ modal, setModal, cart }) => {
+
+
+
+const Modal: React.FC<ModalProps> = ({
+  modal,
+  setModal,
+  cart,
+  setCart,
+  dataName,
+}) => {
   const total = cart.reduce(
     (acc, item) => acc + item.priceItems * item.quantity,
     0
@@ -19,6 +30,16 @@ const Modal: React.FC<ModalProps> = ({ modal, setModal, cart }) => {
   const formatCurrency = (value: number) => {
     return value.toFixed(2).replace(".", ",");
   };
+ function removeItem() {
+      const newCart = cart.map((item) => {
+        if (item.id && item.quantity > 0) {
+          return { ...item, quantity: item.quantity - 1 };
+        }
+        return item;
+      });
+      setCart(newCart);
+    console.log(cart);
+  }
   return (
     <div
       id="cart-modal"
@@ -30,17 +51,21 @@ const Modal: React.FC<ModalProps> = ({ modal, setModal, cart }) => {
         onClick={(e) => e.stopPropagation()}
       >
         <h2 className="text-center font-bold text-2xl mb-2">Meu carrinho</h2>
-        <div id="cart-items" className="flex justify-between mb-2 flex-col">
+        <div className="flex justify-between mb-2 flex-col">
           {cart.map((item) => (
-            <div className="font-medium flex justify-between mb-4">
-              <div key={item.id}>
+            <div
+              key={item.id}
+              className="font-medium flex justify-between mb-4"
+            >
+              <div>
                 <p>{item.nameItems}</p>
                 <p>Qtd: {item.quantity}</p>
                 <p>R$: {formatCurrency(item.priceItems)}</p>
               </div>
 
               <button>
-                <i className="fa fa-trash"></i> Remover
+                <i className="fa fa-trash" onClick={() => removeItem()}></i>
+                Remover
               </button>
             </div>
           ))}
