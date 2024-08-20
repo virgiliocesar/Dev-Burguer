@@ -5,7 +5,6 @@ interface CartItems {
   priceItems: number;
   quantity: number;
 }
-
 interface ProductProps {
   cart: CartItems[];
   setCart: (value: CartItems[]) => void;
@@ -31,6 +30,9 @@ const Product: React.FC<ProductProps> = ({
 }) => {
   const priceItems = Number(dataPrice);
   const nameItems = dataName;
+
+  // console.log(priceItems, nameItems);
+  
 
   function addToCart(nameItems: string, priceItems: number) {
     const newCart = [

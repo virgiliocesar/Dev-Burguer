@@ -12,7 +12,7 @@ export default function App() {
     <div className="text-3 font-bold underline">
       <Header />
       <Menu cart={cart} setCart={setCart} />
-      <Modal modal={modal} setModal={setModal} cart={cart} />
+      <Modal modal={modal} setModal={setModal} cart={cart} setCart={setCart} />
       <Footer setModal={setModal} cart={cart} />
     </div>
   );
