@@ -1,21 +1,24 @@
-const Modal = ({
-  modal,
-  setModal,
-  cart,
-}: {
-  cart: number;
+interface CartItem {
+  id: string;
+  nameItems: string;
+  quantity: number;
+  priceItems: number;
+}
+interface ModalProps {
+  cart: CartItem[];
   modal: string;
   setModal: (value: string) => void;
-}) => {
-  // function addToCart() {
-  //   setCart(cart + 1);
-  // }
-  // function removeFromCart() {
-  //   setCart(cart - 1);
-  // }
-  // function resetCart() {
-  //   setCart(0);
-  // }
+}
+const Modal: React.FC<ModalProps> = ({ modal, setModal, cart }) => {
+  const total = cart.reduce(
+    (acc, item) => acc + item.priceItems * item.quantity,
+    0
+  );
+
+  // Formata valores numéricos substituindo ponto por vírgula
+  const formatCurrency = (value: number) => {
+    return value.toFixed(2).replace(".", ",");
+  };
   return (
     <div
       id="cart-modal"
@@ -28,10 +31,22 @@ const Modal = ({
       >
         <h2 className="text-center font-bold text-2xl mb-2">Meu carrinho</h2>
         <div id="cart-items" className="flex justify-between mb-2 flex-col">
-          {/* Aqui os itens do carrinho devem ser renderizados */}
+          {cart.map((item) => (
+            <div className="font-medium flex justify-between mb-4">
+              <div key={item.id}>
+                <p>{item.nameItems}</p>
+                <p>Qtd: {item.quantity}</p>
+                <p>R$: {formatCurrency(item.priceItems)}</p>
+              </div>
+
+              <button>
+                <i className="fa fa-trash"></i> Remover
+              </button>
+            </div>
+          ))}
         </div>
         <p className="font-bold">
-          Total: <span id="cart-total">R${/*Valor do carrinho */}</span>
+          Total: <span id="cart-total">R$ {formatCurrency(total)}</span>
         </p>
         <p className="font-bold mt-4">Endereço de entrega:</p>
         <input

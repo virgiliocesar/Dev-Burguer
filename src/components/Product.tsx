@@ -1,12 +1,12 @@
+import { v4 as uuidv4 } from "uuid";
 interface CartItems {
+  id: string;
   nameItems: string;
   priceItems: number;
   quantity: number;
 }
 
 interface ProductProps {
-  count: number;
-  setCount: (value: number) => void;
   cart: CartItems[];
   setCart: (value: CartItems[]) => void;
   src: string;
@@ -19,8 +19,6 @@ interface ProductProps {
 }
 
 const Product: React.FC<ProductProps> = ({
-  count,
-  setCount,
   cart,
   setCart,
   src,
@@ -35,9 +33,27 @@ const Product: React.FC<ProductProps> = ({
   const nameItems = dataName;
 
   function addToCart(nameItems: string, priceItems: number) {
-    const newCart = [...cart, { nameItems, priceItems, quantity: 1 }];
+    const newCart = [
+      ...cart,
+      {
+        id: uuidv4(),
+        nameItems,
+        priceItems,
+        quantity: 1
+      },
+    ];
     setCart(newCart);
-    setCount(count + 1);
+
+    const existItem = cart.find((item) => item.nameItems === nameItems);
+    if (existItem) {
+      const newCart = cart.map((item) => {
+        if (item.nameItems === nameItems) {
+          return { ...item, quantity: item.quantity + 1 };
+        }
+        return item;
+      });
+      setCart(newCart);
+    }
 
     console.log(cart);
   }

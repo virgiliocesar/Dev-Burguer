@@ -11,7 +11,17 @@ import hambEith from "./assets/img/hamb-8.png";
 import refriOne from "./assets/img/refri-1.png";
 import refriTwo from "./assets/img/refri-2.png";
 
-const Menu = ({ cart, setCart, count, setCount}: { cart: number; setCart: (value: number) => void, count: number, setCount: (value: number) => void}) => {
+interface CartItems {
+  id: string;
+  nameItems: string;
+  quantity: number;
+  priceItems: number;
+}
+interface MenuProps {
+  cart: CartItems[];
+  setCart: (value: CartItems[]) => void;
+}
+const Menu: React.FC<MenuProps> = ({ cart, setCart}) => {
   return (
     <div>
       <h2 className="text-2xl md:text-3xl font-bold text-center mt-9 mb-6">
@@ -20,8 +30,6 @@ const Menu = ({ cart, setCart, count, setCount}: { cart: number; setCart: (value
       <div id="menu">
         <main className="grid grid-cols-1 md:grid-cols-2 gap-7 md:gap-10 mx-auto max-w-7xl px-2 mb-16">
           <Product
-            count={count}
-            setCount={setCount}
             cart={cart}
             setCart={setCart}
             src={hambOne}
@@ -35,8 +43,6 @@ const Menu = ({ cart, setCart, count, setCount}: { cart: number; setCart: (value
             dataPrice={"18.90"}
           />
           <Product
-            count={count}
-            setCount={setCount}
             cart={cart}
             setCart={setCart}
             src={hambTwo}
@@ -50,8 +56,6 @@ const Menu = ({ cart, setCart, count, setCount}: { cart: number; setCart: (value
             dataPrice={"29.90"}
           />
           <Product
-            count={count}
-            setCount={setCount}
             cart={cart}
             setCart={setCart}
             src={hambThree}
@@ -65,8 +69,6 @@ const Menu = ({ cart, setCart, count, setCount}: { cart: number; setCart: (value
             dataPrice={"35.90"}
           />
           <Product
-            count={count}
-            setCount={setCount}
             cart={cart}
             setCart={setCart}
             src={hambFor}
@@ -80,8 +82,6 @@ const Menu = ({ cart, setCart, count, setCount}: { cart: number; setCart: (value
             dataPrice={"32.90"}
           />
           <Product
-            count={count}
-            setCount={setCount}
             cart={cart}
             setCart={setCart}
             src={hambFive}
@@ -95,8 +95,6 @@ const Menu = ({ cart, setCart, count, setCount}: { cart: number; setCart: (value
             dataPrice={"30.00"}
           />
           <Product
-            count={count}
-            setCount={setCount}
             cart={cart}
             setCart={setCart}
             src={hambSix}
@@ -110,8 +108,6 @@ const Menu = ({ cart, setCart, count, setCount}: { cart: number; setCart: (value
             dataPrice={"25.90"}
           />
           <Product
-            count={count}
-            setCount={setCount}
             cart={cart}
             setCart={setCart}
             src={hambSeven}
@@ -125,8 +121,6 @@ const Menu = ({ cart, setCart, count, setCount}: { cart: number; setCart: (value
             dataPrice={"16.90"}
           />
           <Product
-            count={count}
-            setCount={setCount}
             cart={cart}
             setCart={setCart}
             src={hambEith}
@@ -150,8 +144,6 @@ const Menu = ({ cart, setCart, count, setCount}: { cart: number; setCart: (value
           id="menu"
         >
           <Product
-            count={count}
-            setCount={setCount}
             cart={cart}
             setCart={setCart}
             src={refriOne}
@@ -163,8 +155,6 @@ const Menu = ({ cart, setCart, count, setCount}: { cart: number; setCart: (value
             dataPrice={"12.90"}
           />
           <Product
-            count={count}
-            setCount={setCount}
             cart={cart}
             setCart={setCart}
             src={refriTwo}
