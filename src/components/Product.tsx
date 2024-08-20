@@ -31,22 +31,9 @@ const Product: React.FC<ProductProps> = ({
   const priceItems = Number(dataPrice);
   const nameItems = dataName;
 
-  // console.log(priceItems, nameItems);
-  
-
   function addToCart(nameItems: string, priceItems: number) {
-    const newCart = [
-      ...cart,
-      {
-        id: uuidv4(),
-        nameItems,
-        priceItems,
-        quantity: 1
-      },
-    ];
-    setCart(newCart);
-
     const existItem = cart.find((item) => item.nameItems === nameItems);
+
     if (existItem) {
       const newCart = cart.map((item) => {
         if (item.nameItems === nameItems) {
@@ -55,8 +42,19 @@ const Product: React.FC<ProductProps> = ({
         return item;
       });
       setCart(newCart);
-    }
+    } else {
+      const newCart = [
+        ...cart,
+        {
+          id: uuidv4(),
+          nameItems,
+          priceItems,
+          quantity: 1,
+        },
+      ];
+      setCart(newCart);
 
+    }
     console.log(cart);
   }
 

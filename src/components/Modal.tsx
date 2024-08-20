@@ -10,8 +10,6 @@ interface ModalProps {
   setCart: (value: CartItems[]) => void;
   modal: string;
   setModal: (value: string) => void;
-  dataName: string;
-  dataPrice: string;
 }
 
 const Modal: React.FC<ModalProps> = ({
@@ -19,13 +17,8 @@ const Modal: React.FC<ModalProps> = ({
   setModal,
   cart,
   setCart,
-  dataName,
-  dataPrice,
-}) => {
-  const priceItems = Number(dataPrice);
-  const nameItems = dataName;
-  console.log(priceItems, nameItems);
 
+}) => {
   const total = cart.reduce(
     (acc, item) => acc + item.priceItems * item.quantity,
     0
@@ -37,22 +30,20 @@ const Modal: React.FC<ModalProps> = ({
   };
 
   function removeToCart(nameItems: string) {
-    const existItem = cart.find((item) => item.nameItems === nameItems);
-    if (!existItem) {
-      const newCart = cart.map((item) => {
-        if (item.nameItems === nameItems) {
-          console.log("aqui");
-          return { ...item, quantity: item.quantity + 1 };
+    const newCart = cart.reduce((acc, item) => {
+      if (item.nameItems === nameItems) {
+        if (item.quantity > 1) {
+          acc.push({ ...item, quantity: item.quantity - 1 });
         }
-        console.log("aqui222");
-        return item;
-      });
-      setCart(newCart);
-      console.log("aqui33333");
-    }
+      } else {
+        acc.push(item);
+      }
+      return acc;
+    }, [] as CartItems[]);
 
-    console.log(cart);
+    setCart(newCart);
   }
+
   return (
     <div
       id="cart-modal"
@@ -76,7 +67,7 @@ const Modal: React.FC<ModalProps> = ({
                 <p>R$: {formatCurrency(item.priceItems)}</p>
               </div>
 
-              <button onClick={() => removeToCart(nameItems)}>
+              <button onClick={() => removeToCart(item.nameItems)}>
                 <i className="fa fa-trash"></i>
                 Remover
               </button>
