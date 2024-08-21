@@ -42,7 +42,7 @@ const Modal: React.FC<ModalProps> = ({ modal, setModal, cart, setCart }) => {
   const [warnAddress, setWarnAddress] = useState("hidden");
   const [border, setBorder] = useState("");
 
-  const handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setEndereço(event.target.value);
     console.log(event.target.value);
     if (event.target.value !== "") {
