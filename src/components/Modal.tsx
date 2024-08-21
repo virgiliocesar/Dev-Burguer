@@ -65,17 +65,21 @@ const Modal: React.FC<ModalProps> = ({ modal, setModal, cart, setCart }) => {
       console.log("erro");
       return;
     }
-    //Enviar pedido para api whatsapp
-    const cartItems = cart.map((item) => {
-      return `${item.nameItems} Quantidade: ${item.quantity} Prço R$: ${item.priceItems}`;
-    }).join("");
-// `Ola, gostaria de fazer o pedido: ${cartItems}\nEndereço: ${endereco}`;
+    //Enviar pedido whatsapp
+    const cartItems = cart
+      .map((item) => {
+        return `${item.nameItems} Quantidade: ${item.quantity} Prço R$: ${item.priceItems}`;
+      })
+      .join("");
+
     const message = encodeURIComponent(
       `Ola, gostaria de fazer o pedido: ${cartItems}\nEndereço: ${endereco}`
     );
-    const phone = "1198193-2902";
-    window.open(`https://wa.me/${phone}?text=${message} Endereço: ${endereco}`, "_blank");
-
+    const phone = "11981932902";
+    window.open(
+      `https://wa.me/${phone}?text=${message} Endereço: ${endereco}`,
+      "_blank"
+    );
   };
 
   return (
