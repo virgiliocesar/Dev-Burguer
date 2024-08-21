@@ -1,4 +1,5 @@
-
+import { useState } from "react";
+import { checkRestaurantOpen } from "./Header";
 interface CartItems {
   id: string;
   nameItems: string;
@@ -11,14 +12,7 @@ interface ModalProps {
   modal: string;
   setModal: (value: string) => void;
 }
-
-const Modal: React.FC<ModalProps> = ({
-  modal,
-  setModal,
-  cart,
-  setCart,
-
-}) => {
+const Modal: React.FC<ModalProps> = ({ modal, setModal, cart, setCart }) => {
   const total = cart.reduce(
     (acc, item) => acc + item.priceItems * item.quantity,
     0
@@ -28,7 +22,7 @@ const Modal: React.FC<ModalProps> = ({
   const formatCurrency = (value: number) => {
     return value.toFixed(2).replace(".", ",");
   };
-// remover item do carrinho e atualizar o carrinho
+  // remover item do carrinho e atualizar o carrinho
   function removeToCart(nameItems: string) {
     const newCart = cart.reduce((acc, item) => {
       if (item.nameItems === nameItems) {
@@ -43,6 +37,46 @@ const Modal: React.FC<ModalProps> = ({
 
     setCart(newCart);
   }
+
+  const [endereco, setEndereço] = useState("");
+  const [warnAddress, setWarnAddress] = useState("hidden");
+  const [border, setBorder] = useState("");
+
+  const handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    setEndereço(event.target.value);
+    console.log(event.target.value);
+    if (event.target.value !== "") {
+      setWarnAddress("hidden");
+      setBorder("border-green-500");
+    }
+  };
+
+  //finalizar pedido
+  const handleSubmit = () => {
+    const isOpen = checkRestaurantOpen();
+    if (!isOpen) {
+      alert("Restaurante fechado");
+      return;
+    }
+    if (cart.length === 0) return;
+    if (endereco === "") {
+      setWarnAddress("block");
+      setBorder("border-red-500");
+      console.log("erro");
+      return;
+    }
+    //Enviar pedido para api whatsapp
+    const cartItems = cart.map((item) => {
+      return `${item.nameItems} Quantidade: ${item.quantity} Prço R$: ${item.priceItems}`;
+    }).join("");
+// `Ola, gostaria de fazer o pedido: ${cartItems}\nEndereço: ${endereco}`;
+    const message = encodeURIComponent(
+      `Ola, gostaria de fazer o pedido: ${cartItems}\nEndereço: ${endereco}`
+    );
+    const phone = "1198193-2902";
+    window.open(`https://wa.me/${phone}?text=${message} Endereço: ${endereco}`, "_blank");
+
+  };
 
   return (
     <div
@@ -82,9 +116,10 @@ const Modal: React.FC<ModalProps> = ({
           type="text"
           placeholder="Digite seu endereço completo..."
           id="address"
-          className="w-full border-2 p-1 rounded my-1"
+          className={`w-full border-2 p-1 rounded my-1 ${border}`}
+          onChange={handleChange}
         />
-        <p className="text-red-500 hidden" id="address-warn">
+        <p className={`text-red-500 ${warnAddress}`} id="address-warn">
           Digite seu endereço completo!
         </p>
         <div className="flex items-center justify-between mt-5 w-full">
@@ -94,6 +129,7 @@ const Modal: React.FC<ModalProps> = ({
           <button
             id="checkout-btn"
             className="bg-green-500 text-white px-4 py-1 rounded"
+            onClick={() => handleSubmit()}
           >
             Finalizar pedido
           </button>

@@ -56,7 +56,6 @@ const Product: React.FC<ProductProps> = ({
       setCart(newCart);
 
     }
-    console.log(cart);
   }
 
   return (
