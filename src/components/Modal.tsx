@@ -28,7 +28,7 @@ const Modal: React.FC<ModalProps> = ({
   const formatCurrency = (value: number) => {
     return value.toFixed(2).replace(".", ",");
   };
-
+// remover item do carrinho e atualizar o carrinho
   function removeToCart(nameItems: string) {
     const newCart = cart.reduce((acc, item) => {
       if (item.nameItems === nameItems) {

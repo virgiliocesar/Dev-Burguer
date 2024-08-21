@@ -30,7 +30,8 @@ const Product: React.FC<ProductProps> = ({
 }) => {
   const priceItems = Number(dataPrice);
   const nameItems = dataName;
-
+  
+//adicionar ao carrinho e atualizar o carrinho
   function addToCart(nameItems: string, priceItems: number) {
     const existItem = cart.find((item) => item.nameItems === nameItems);
 
